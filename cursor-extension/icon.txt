@@ -1,0 +1,12 @@
+이 폴더에 다음 아이콘 파일들이 필요합니다:
+- icon16.png (16x16 픽셀)
+- icon48.png (48x48 픽셀) 
+- icon128.png (128x128 픽셀)
+
+임시로 manifest.json에서 아이콘을 비활성화하거나,
+온라인에서 간단한 아이콘을 다운로드해서 사용하세요.
+
+추천 사이트:
+- https://icons8.com/
+- https://www.flaticon.com/
+- https://iconify.design/

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor 자동 회원가입</title>
+    <style>
+        body {
+            width: 320px;
+            height: 400px;
+            margin: 0;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 8px 0 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .status {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-dot.connected {
+            background: #10b981;
+            box-shadow: 0 0 6px #10b981;
+        }
+
+        .status-dot.disconnected {
+            background: #ef4444;
+            box-shadow: 0 0 6px #ef4444;
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }
+
+        .button.primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .button.primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .info {
+            font-size: 11px;
+            opacity: 0.7;
+            line-height: 1.4;
+            margin-top: 16px;
+        }
+
+        .log {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            padding: 8px;
+            font-size: 10px;
+            font-family: 'Courier New', monospace;
+            max-height: 80px;
+            overflow-y: auto;
+            margin-top: 12px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎭 Cursor 자동 회원가입</h1>
+        <p>자동으로 회원가입 폼을 채워드립니다</p>
+    </div>
+
+    <div class="status">
+        <div class="status-indicator">
+            <div class="status-dot disconnected" id="serverStatus"></div>
+            <span id="serverStatusText">서버 연결 확인 중...</span>
+        </div>
+        <div style="font-size: 12px; opacity: 0.8;" id="statusDetails">
+            Go 프로그램이 실행 중인지 확인하세요
+        </div>
+    </div>
+
+    <div class="email-status" id="emailStatus" style="display: none;">
+        <div style="font-size: 12px; margin-bottom: 8px;">📧 생성된 이메일:</div>
+        <div id="generatedEmail" style="font-size: 11px; word-break: break-all; background: rgba(255,255,255,0.1); padding: 4px; border-radius: 4px;"></div>
+    </div>
+
+    <button class="button primary" id="generateEmailButton" disabled>
+        <span class="loading"></span> 준비 중...
+    </button>
+
+    <div class="step-buttons" id="stepButtons" style="display: none;">
+        <div style="font-size: 12px; margin-bottom: 8px; opacity: 0.8;">📋 단계별 실행:</div>
+        
+        <button class="button secondary" id="step1Button">
+            1️⃣ Sign In 버튼 클릭
+        </button>
+        
+        <button class="button secondary" id="step2Button" disabled>
+            2️⃣ Sign Up 버튼 클릭
+        </button>
+        
+        <button class="button secondary" id="step3Button" disabled>
+            3️⃣ 회원가입 폼 작성
+        </button>
+    </div>
+
+    <button class="button secondary" id="openCursorButton">
+        📖 Cursor.com 열기
+    </button>
+
+    <button class="button secondary" id="refreshButton">
+        🔄 상태 새로고침
+    </button>
+
+    <div class="info">
+        <strong>사용 방법:</strong><br>
+        1. Go 프로그램을 먼저 실행하세요<br>
+        2. Cursor.com으로 이동하세요<br>
+        3. 자동으로 회원가입이 진행됩니다
+    </div>
+
+    <div class="log" id="logArea" style="display: none;"></div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Cursor 자동 회원가입 도우미",
+  "version": "1.0",
+  "description": "Cursor.com 회원가입을 자동으로 도와주는 확장프로그램",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "https://cursor.com/*",
+    "https://authenticator.cursor.sh/*",
+    "http://localhost:8080/*"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": [
+        "https://cursor.com/*",
+        "https://authenticator.cursor.sh/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Cursor 자동 회원가입"
+  }
+}
