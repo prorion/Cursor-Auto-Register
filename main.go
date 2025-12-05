@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	// 데이터베이스 초기화
+	// 데이터베이스 초기화 /
 	db, err := InitializeDatabase()
 	if err != nil {
 		log.Fatalf("❌ 데이터베이스 초기화 실패: %v", err)
@@ -22,7 +22,7 @@ func main() {
 	fmt.Println("🗄️ 데이터베이스가 성공적으로 초기화되었습니다!")
 
 	// 입력 스캐너 초기화
-	scanner := bufio.NewScanner(os.Stdin)
+	scanner := bufio.NewScanner(os.Stdin) //
 
 	// Extension HTTP 서버 시작
 	extensionServer := StartExtensionServer()
