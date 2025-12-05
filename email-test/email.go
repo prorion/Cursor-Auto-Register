@@ -50,7 +50,7 @@ func main() {
 		log.Fatalf("❌ Mohmal 접속 실패: %v", err)
 	}
 
-	// 페이지 로딩 대기
+	// 페이지 로딩 대기 //
 	err = page.WaitForLoadState(playwright.PageWaitForLoadStateOptions{
 		State: playwright.LoadStateNetworkidle,
 	})
