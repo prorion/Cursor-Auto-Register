@@ -1,13 +1,8 @@
-module Practice_Go
+module email-test
 
-go 1.24
+go 1.24.0
 
-toolchain go1.24.0
-
-require (
-	github.com/mattn/go-sqlite3 v1.14.32
-	github.com/playwright-community/playwright-go v0.4501.1
-)
+require github.com/playwright-community/playwright-go v0.4501.1
 
 require (
 	github.com/deckarep/golang-set/v2 v2.6.0 // indirect
