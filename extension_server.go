@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-// ExtensionServer - Chrome Extension과 통신하는 HTTP 서버
+// ExtensionServer - Chrome Extension과 통신하는 HTTP 서버 //
 type ExtensionServer struct {
 	port      string
 	userData  *UserData
@@ -20,7 +20,7 @@ type ExtensionServer struct {
 	sessionsMutex sync.RWMutex
 }
 
-// UserData - Extension에 전달할 사용자 데이터
+// UserData - Extension에 전달할 사용자 데이터 ㅎㅎ
 type UserData struct {
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
