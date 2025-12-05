@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	// 데이터베이스 초기화
+	// 데이터베이스 초기화 //
 	db, err := InitializeDatabase()
 	if err != nil {
 		log.Fatalf("❌ 데이터베이스 초기화 실패: %v", err)
